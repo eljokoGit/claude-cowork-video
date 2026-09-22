@@ -70,7 +70,7 @@ def fetch_captions(url: str, out_dir: Path) -> dict:
     out_dir.mkdir(parents=True, exist_ok=True)
     output_template = str(out_dir / "video.%(ext)s")
     cmd = [
-        "yt-dlp",
+        "yt-dlp", "--compat-options", "no-certifi",
         "--skip-download",
         "--write-info-json",
         "--write-subs",
@@ -125,7 +125,7 @@ def download_url(
 
     fmt = "ba/bestaudio" if audio_only else "bv*[height<=720]+ba/b[height<=720]/bv+ba/b"
     cmd = [
-        "yt-dlp",
+        "yt-dlp", "--compat-options", "no-certifi",
         "-N", "8",
         "-f", fmt,
         "--merge-output-format", "mp4",
